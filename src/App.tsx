@@ -7,6 +7,8 @@ import dark from "./styles/themes/dark"
 import Header from "./layouts/Header"
 import GlobalStyle from "./styles/global"
 
+import CommandBar from "./Components/CommandBar"
+
 function App() {
   const [theme, setTheme] = useLocalStorage('theme', light)
 
@@ -15,12 +17,14 @@ function App() {
   }
  
   return (
-    <ThemeProvider theme={theme}>
-    <div className="App">
-      <GlobalStyle />
-      <Header toggleTheme={toggleTheme} />
-    </div>
-    </ThemeProvider>
+    <CommandBar toggleTheme={toggleTheme}>
+      <ThemeProvider theme={theme}>
+      <div className="App">
+        <GlobalStyle />
+        <Header toggleTheme={toggleTheme} />
+      </div>
+      </ThemeProvider>
+    </CommandBar>
   )
 }
 
