@@ -13,7 +13,7 @@ const Header = ({ toggleTheme }: Props) => {
   const { colors, title } = useContext(ThemeContext)
   return (
     <Container>
-      <CommandButton />
+      <CommandButton currentTheme={title} />
       <Switch
         onChange={toggleTheme}
         checked={title === 'dark'}

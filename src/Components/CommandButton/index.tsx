@@ -1,16 +1,21 @@
+import { useKBar } from 'kbar'
 import { CButton } from './styles'
 import { TbSearch, TbCommand } from 'react-icons/tb'
 
-function CommandButton() {
+interface Props {
+  currentTheme: string
+}
+
+function CommandButton({ currentTheme }: Props) {
   return (
-  <CButton>
-    <span className='command_search_icon'>
-      <TbSearch size={15}/>
-      <span>Buscar</span>
+  <CButton activeTheme={currentTheme} onClick={useKBar().query.toggle}>
+    <span className='command_search'>
+      <TbSearch size={15} className='command_search_icon'/>
+      <span className='command_search_text'>Buscar</span>
     </span>
     <span className="command_icon">
-      <TbCommand />
-      K
+      <TbCommand size={15} />
+      <span>K</span>
     </span>
   </CButton>)
 }

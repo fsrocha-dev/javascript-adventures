@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { shade, lighten } from 'polished'
 
-export const CButton = styled.button`
+type Props = {
+  activeTheme: string
+}
+
+export const CButton = styled.button<Props>`
   display: flex;
   align-items: center;
   background: ${props => props.theme.colors.primary};
@@ -16,11 +20,27 @@ export const CButton = styled.button`
   &:hover {
     border: 1px solid ${props => props.theme.colors.purple};
   }
-  &:hover .command_search_icon{
-    color: ${props => lighten(0.2, props.theme.colors.secundary)};
+  .command_search {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  &:hover .command_search{
+    color: ${({ theme, activeTheme }) => activeTheme == 'light' ? shade(0.3, theme.colors.secundary) : lighten(0.3, theme.colors.secundary)}
+  }
+  .command_search_text {
+    margin-left: 6px;
   }
   .command_icon {
+    margin-left: 12px;
+    padding: 0.2em 0.4em;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: 1px solid ${props => shade(0.4, props.theme.colors.secundary)}
+  }
+  .command_icon span{
+    font-size: 12px;
   }
 `;
