@@ -3,6 +3,7 @@ import Switch from 'react-switch'
 import { Container } from './styles'
 import { ThemeContext } from 'styled-components'
 import { TbSun, TbMoon } from 'react-icons/tb'
+import CommandButton from '../../Components/CommandButton'
 
 interface Props {
   toggleTheme(): void
@@ -12,7 +13,7 @@ const Header = ({ toggleTheme }: Props) => {
   const { colors, title } = useContext(ThemeContext)
   return (
     <Container>
-      Olá Javascript Adventures
+      <CommandButton />
       <Switch
         onChange={toggleTheme}
         checked={title === 'dark'}
