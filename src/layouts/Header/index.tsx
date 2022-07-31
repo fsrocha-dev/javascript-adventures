@@ -2,23 +2,51 @@ import { useContext } from 'react'
 import Switch from 'react-switch'
 import { Container } from './styles'
 import { ThemeContext } from 'styled-components'
+import { TbSun, TbMoon } from 'react-icons/tb'
 
-const Header = () => {
-  const { colors } = useContext(ThemeContext)
+interface Props {
+  toggleTheme(): void
+}
+
+const Header = ({ toggleTheme }: Props) => {
+  const { colors, title } = useContext(ThemeContext)
   return (
     <Container>
       Olá Javascript Adventures
-      <Switch 
-        onChange={() => {}}
-        checked={true}
+      <Switch
+        onChange={toggleTheme}
+        checked={title === 'dark'}
         checkedIcon={false}
         uncheckedIcon={false}
-        height={18}
+        checkedHandleIcon={
+          <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <TbMoon size={14} />
+        </div>}
+        uncheckedHandleIcon={
+          <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <TbSun size={14} />
+        </div>}
+        height={22}
         width={40}
-        handleDiameter={10}
+        handleDiameter={19}
         offColor={colors.switchBg}
+        offHandleColor={colors.primary}
         onColor={colors.switchBg}
-        className=""
+        onHandleColor={colors.primary}
       />
     </Container>
   )
