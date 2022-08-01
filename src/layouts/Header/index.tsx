@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react';
 import Switch from 'react-switch'
 import { Container } from './styles'
 import { ThemeContext } from 'styled-components'
@@ -11,8 +11,24 @@ interface Props {
 
 const Header = ({ toggleTheme }: Props) => {
   const { colors, title } = useContext(ThemeContext)
+  const [headerScrolled, setHeaderScrolled ] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+  }, [])
+
+  function handleScroll() {
+    const scrollTop = window.pageYOffset
+    console.log(scrollTop)
+    if (scrollTop > 50) {
+      setHeaderScrolled(true)
+    } else {
+      setHeaderScrolled(false)
+    }
+  }
+  
   return (
-    <Container>
+    <Container hasScrolled={headerScrolled} currentTheme={title}>
       <CommandButton currentTheme={title} />
       <Switch
         onChange={toggleTheme}

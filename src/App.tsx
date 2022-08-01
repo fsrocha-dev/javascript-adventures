@@ -19,10 +19,8 @@ function App() {
   return (
     <CommandBar toggleTheme={toggleTheme}>
       <ThemeProvider theme={theme}>
-      <div className="App">
         <GlobalStyle />
         <Header toggleTheme={toggleTheme} />
-      </div>
       </ThemeProvider>
     </CommandBar>
   )
