@@ -4,6 +4,7 @@ import useLocalStorage from "./Utils/useLocalStorage"
 import light from "./styles/themes/light"
 import dark from "./styles/themes/dark"
 
+import MainContainer from './layouts/Main';
 import Header from "./layouts/Header"
 import GlobalStyle from "./styles/global"
 
@@ -20,7 +21,9 @@ function App() {
     <CommandBar toggleTheme={toggleTheme}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header toggleTheme={toggleTheme} />
+        <MainContainer>
+          <Header toggleTheme={toggleTheme} />
+        </MainContainer>
       </ThemeProvider>
     </CommandBar>
   )
