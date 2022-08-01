@@ -9,6 +9,7 @@ import Header from "./layouts/Header"
 import GlobalStyle from "./styles/global"
 
 import CommandBar from "./Components/CommandBar"
+import Sidebar from "./layouts/Sidebar";
 
 function App() {
   const [theme, setTheme] = useLocalStorage('theme', light)
@@ -22,7 +23,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainContainer>
-          <Header toggleTheme={toggleTheme} />
+          <>
+            <Sidebar />
+            <Header toggleTheme={toggleTheme} />
+          </>
         </MainContainer>
       </ThemeProvider>
     </CommandBar>
