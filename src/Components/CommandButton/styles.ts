@@ -38,7 +38,7 @@ export const CButton = styled.button<Props>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid ${props => shade(0.4, props.theme.colors.secundary)}
+    border: 1px solid ${props => props.theme.colors.border}
   }
   .command_icon span{
     font-size: 12px;
