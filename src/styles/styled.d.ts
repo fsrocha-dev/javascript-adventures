@@ -12,6 +12,8 @@ declare module 'styled-components' {
       background: string,
       text: string,
 
+      border: string,
+
       switchBg: string
     }
   }

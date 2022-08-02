@@ -1,3 +1,9 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 import { ThemeProvider } from "styled-components"
 import useLocalStorage from "./Utils/useLocalStorage"
 
@@ -23,10 +29,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainContainer>
-          <>
+          <Router>
             <Sidebar />
             <Header toggleTheme={toggleTheme} />
-          </>
+            <Routes>
+              <Route path="/lesson"/>
+            </Routes>
+          </Router>
         </MainContainer>
       </ThemeProvider>
     </CommandBar>

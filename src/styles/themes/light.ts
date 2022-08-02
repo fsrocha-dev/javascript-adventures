@@ -1,3 +1,5 @@
+import { shade, lighten } from 'polished'
+
 export default {
   title: 'light',
 
@@ -9,6 +11,11 @@ export default {
 
     background: '#fff',
     text: '#213647',
+
+    border: lighten(0.45, '#747474'),
+
+    link: '#747474',
+    linkHover: '#646cff',
 
     switchBg: '#f1f1f1',
   }
