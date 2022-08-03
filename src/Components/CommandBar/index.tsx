@@ -11,22 +11,35 @@ import {
 
 type Props = {
   children: JSX.Element,
-  toggleTheme: React.Dispatch<React.SetStateAction<string>>
+  toggleTheme: React.Dispatch<React.SetStateAction<string>>,
+  currentTheme: string
 }
 
 type StyleResultProps = {
   active: Boolean
 }
 
-function CommandBar({ children, toggleTheme }: Props) {
+function CommandBar({ children, toggleTheme, currentTheme }: Props) {
   const actions = [];
+
+  const searchStyle = {
+    padding: '12px 16px',
+    fontSize: '16px',
+    width: '100%',
+    boxSizing: 'border-box',
+    outline: 'none',
+    border: 'none',
+    margin: 0,
+    background: currentTheme === 'light' ? '#ffffff' : 'rgba(255, 255, 255, 0.05)',
+    color: '#f2f2f2',
+  }
 
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>
         <KBarPositioner style={positionerStyle}>
           <KBarAnimator className="kbar-blur" style={animatorStyle}>
-            <KBarSearch style={searchStyle} placeholder="O que deseja encontrar ?" />
+            <KBarSearch style={searchStyle} defaultPlaceholder="O que deseja encontrar ?" />
             <KBarResults 
               items={[]} 
               onRender={({ item, active }) =>
@@ -106,17 +119,6 @@ const animatorStyle = {
   border: '1px solid #646cff'
 }
 
-const searchStyle = {
-  padding: '12px 16px',
-  fontSize: '16px',
-  width: '100%',
-  boxSizing: 'border-box',
-  outline: 'none',
-  border: 'none',
-  margin: 0,
-  background: 'rgba(255, 255, 255, 0.05)',
-  color: '#f2f2f2',
-}
 
 const groupNameStyle = {
   padding: '8px 16px',

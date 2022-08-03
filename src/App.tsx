@@ -25,7 +25,7 @@ function App() {
   }
  
   return (
-    <CommandBar toggleTheme={toggleTheme}>
+    <CommandBar toggleTheme={toggleTheme} currentTheme={theme.title}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainContainer>
