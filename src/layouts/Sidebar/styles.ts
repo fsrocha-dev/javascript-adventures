@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { down } from '../../styles/MediaQueries/queries';
 
 export const SidebarContainer = styled.div`
   display: flex;
@@ -7,6 +8,16 @@ export const SidebarContainer = styled.div`
   order: -1;
   flex: 0 0 270px;
   padding: 20px 30px;
+  height: 100vh;
+  transition: 0.25s;
+  transition-timing-function: ease-out;
+  transform: translateX(0);
+  ${down('lg')} {
+    transition-timing-function: ease-in;
+    /* transition: 0.25s; */
+    transform: translateX(-100%);
+    position: fixed;
+  }
 `;
 
 export const SidebarTitle = styled.div`

@@ -1,20 +1,18 @@
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route
+  BrowserRouter as Router, Route, Routes
 } from "react-router-dom";
 
-import { ThemeProvider } from "styled-components"
-import useLocalStorage from "./Utils/useLocalStorage"
+import { ThemeProvider } from "styled-components";
+import useLocalStorage from "./Utils/useLocalStorage";
 
-import light from "./styles/themes/light"
-import dark from "./styles/themes/dark"
+import dark from "./styles/themes/dark";
+import light from "./styles/themes/light";
 
+import Header from "./layouts/Header";
 import MainContainer from './layouts/Main';
-import Header from "./layouts/Header"
-import GlobalStyle from "./styles/global"
+import GlobalStyle from "./styles/global";
 
-import CommandBar from "./Components/CommandBar"
+import CommandBar from "./Components/CommandBar";
 import Sidebar from "./layouts/Sidebar";
 
 function App() {
