@@ -47,11 +47,16 @@ export const SidebarGroup = styled.div`
 export const SidebarItems = styled.div`
   margin: 15px 0;
   a {
+    display: block;
+    margin: 15px 0;
     color: ${props => props.theme.colors.secundary};
     text-decoration: none;
     transition: .25s;
   }
   a:hover {
+    color: ${props => props.theme.colors.text};
+  }
+  .active {
     color: ${props => props.theme.colors.purple};
   }
 `
