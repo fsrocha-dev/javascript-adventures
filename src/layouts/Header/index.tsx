@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import Switch from 'react-switch'
-import { Container } from './styles'
-import { ThemeContext } from 'styled-components'
-import { TbSun, TbMoon } from 'react-icons/tb'
-import CommandButton from '../../Components/CommandButton'
+import { TbMoon, TbSun } from 'react-icons/tb';
+import Switch from 'react-switch';
+import { ThemeContext } from 'styled-components';
+import CommandButton from '../../Components/CommandButton';
+import { Container } from './styles';
 
 interface Props {
   toggleTheme(): void
