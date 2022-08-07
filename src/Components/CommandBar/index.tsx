@@ -1,13 +1,14 @@
-import React from 'react'
 import {
-  KBarAnimator,
-  KBarProvider,
-  KBarPortal,
-  useDeepMatches,
-  KBarPositioner,
-  KBarSearch,
-  KBarResults
-} from 'kbar'
+  KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarResults, KBarSearch, useMatches
+} from 'kbar';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { lessons } from '../../data/lessons';
+
+import { transparentize } from 'polished';
+import styled from 'styled-components';
+
+import { TbBrandGithub, TbBrandLinkedin, TbExchange, TbFile, TbMenu2 } from 'react-icons/tb';
 
 type Props = {
   children: JSX.Element,
@@ -15,59 +16,81 @@ type Props = {
   currentTheme: string
 }
 
-type StyleResultProps = {
-  active: Boolean
-}
-
 function CommandBar({ children, toggleTheme, currentTheme }: Props) {
-  const actions = [];
-
-  const searchStyle = {
-    padding: '12px 16px',
-    fontSize: '16px',
-    width: '100%',
-    boxSizing: 'border-box',
-    outline: 'none',
-    border: 'none',
-    margin: 0,
-    background: currentTheme === 'light' ? '#ffffff' : 'rgba(255, 255, 255, 0.05)',
-    color: '#f2f2f2',
-  }
+  const navigateTo = useNavigate();
+  
+  const actions = [
+    {
+      id: 'licoes',
+      name: 'Procurar nas lições...',
+      shortcut: ['l'],
+      keywords: 'lições licoes indice índice topicos tópicos',
+      section: 'Lições',
+      icon: <TbMenu2 />
+    },
+    ...lessons.map(({ title, tags, slug }) => ({
+      id: slug,
+      name: title,
+      keywords: tags,
+      parent: 'licoes',
+      perform: () => navigateTo(`/lessons/${slug}`),
+      icon: <TbFile />
+    })),
+    {
+      id: 'linkedin',
+      name: 'LinkedIn',
+      shortcut: ['f', 'l'],
+      keywords: 'go-linkedin',
+      section: 'Follow',
+      perform: () =>
+        window.open('https://www.linkedin.com/in/frankrochadev/', '_blank'),
+      icon: <TbBrandLinkedin />
+    },
+    {
+      id: 'github',
+      name: 'Este projeto no github',
+      shortcut: ['f', 'g'],
+      keywords: 'github projeto',
+      section: 'Follow',
+      perform: () =>
+        window.open('https://github.com/fsrocha-dev/javascript-adventures', '_blank'),
+      icon: <TbBrandGithub />
+    },
+    {
+      id: 'theme',
+      name: 'Alternar tema',
+      shortcut: ['t'],
+      keywords: 'tema theme toggle',
+      section: 'Preferências',
+      perform: () => toggleTheme(''),
+      icon: <TbExchange />
+    },
+  ];
 
   return (
-    <KBarProvider actions={actions}>
+    <KBarProvider actions={actions} options={{ enableHistory: true }}>
       <KBarPortal>
-        <KBarPositioner style={positionerStyle}>
+        <StyledKBarPositioner>
           <KBarAnimator className="kbar-blur" style={animatorStyle}>
-            <KBarSearch style={searchStyle} defaultPlaceholder="O que deseja encontrar ?" />
-            <KBarResults 
-              items={[]} 
-              onRender={({ item, active }) =>
-              typeof item === 'string' ? (
-                <div style={groupNameStyle}>{item}</div>
-              ) : (
-                <ResultItem action={item} active={active} />
-              )
-            }
-            />
+            <StyledKBarSearch defaultPlaceholder="O que deseja encontrar ?" />
             <RenderResults />
           </KBarAnimator>
-        </KBarPositioner>
+        </StyledKBarPositioner>
       </KBarPortal>
-      { children }
+      {children}
     </KBarProvider>
   )
 }
 
 function RenderResults() {
-  const { results } = useDeepMatches()
+  const { results } = useMatches()
 
   return (
     <KBarResults
       items={results}
       onRender={({ item, active }) =>
         typeof item === 'string' ? (
-          <div style={groupNameStyle}>{item}</div>
+          <StyledKBarGroupName>{item}</StyledKBarGroupName>
         ) : (
           <ResultItem action={item} active={active} />
         )
@@ -78,7 +101,7 @@ function RenderResults() {
 
 const ResultItem = React.forwardRef(({ action, active }, ref) => {
   return (
-    <div ref={ref} style={getResultStyle(active)}>
+    <StyledKBarResults ref={ref} setActive={active}>
       <div style={actionStyle}>
         {action.icon && action.icon}
         <div style={actionRowStyle}>
@@ -94,21 +117,54 @@ const ResultItem = React.forwardRef(({ action, active }, ref) => {
           ))}
         </div>
       ) : null}
-    </div>
+    </StyledKBarResults>
   )
 })
 
-const positionerStyle = {
-  position: 'fixed',
-  display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
-  width: '100%',
-  inset: '0px',
-  padding: '14vh 16px 16px',
-  background: 'rgba(41, 41, 53, .5)',
-  boxSizing: 'border-box'
-}
+const StyledKBarPositioner = styled(KBarPositioner)`
+    position: fixed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    inset: 0px;
+    padding: 14vh 16px 16px;
+    background: ${props => transparentize(0.5, 'rgb(41, 41, 53)')};
+    box-sizing: border-box;
+`;
+
+const StyledKBarSearch = styled(KBarSearch)`
+    padding: 12px 16px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin: 0;
+    background: ${props => transparentize(0.1, props.theme.colors.switchBg)};
+    color: #f2f2f2;
+`;
+
+const StyledKBarGroupName = styled.div`
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    color: ${props => props.theme.colors.purple};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: ${props => transparentize(0.1, props.theme.colors.switchBg)};
+`
+
+const StyledKBarResults = styled.div<{ setActive: boolean }>`
+    padding: 12px 16px;
+    background: ${(props) => props.setActive ? props.theme.colors.purple : transparentize(0.1, props.theme.colors.switchBg)};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    cursor: pointer;
+    color: ${(props) => props.setActive ? '#f2f2f2' : transparentize(0.2, props.theme.colors.text)};
+`
 
 const animatorStyle = {
   maxWidth: '600px',
@@ -118,7 +174,6 @@ const animatorStyle = {
   overflow: 'hidden',
   border: '1px solid #646cff'
 }
-
 
 const groupNameStyle = {
   padding: '8px 16px',
@@ -156,19 +211,6 @@ const actionStyle = {
 const actionRowStyle = {
   display: 'flex',
   flexDirection: 'column'
-}
-
-const getResultStyle = ({active}: StyleResultProps) => {
-  return {
-    padding: '12px 16px',
-    background: active ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 0,
-    cursor: 'pointer',
-    color: active ? '#f2f2f2' : '#8f9ba8'
-  }
 }
 
 export default CommandBar
