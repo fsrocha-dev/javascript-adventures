@@ -4,6 +4,7 @@ import {
 
 import { ThemeProvider } from "styled-components";
 import useLocalStorage from "./Utils/useLocalStorage";
+import useUpdateLocalStorage from "./Utils/useUpdateLocalStorage";
 
 import dark from "./styles/themes/dark";
 import light from "./styles/themes/light";
@@ -12,31 +13,38 @@ import Header from "./layouts/Header";
 import MainContainer from './layouts/Main';
 import GlobalStyle from "./styles/global";
 
+import { useEffect } from 'react';
 import CommandBar from "./Components/CommandBar";
 import Sidebar from "./layouts/Sidebar";
 
 function App() {
   const [theme, setTheme] = useLocalStorage('theme', light)
 
+  useEffect(() => {
+    useUpdateLocalStorage('theme', theme)
+  }, [theme])
+
   const toggleTheme = () => {
-    setTheme(theme.title === 'light' ? dark : light)
+    const storageValue = localStorage.getItem('theme')
+    const currentTheme = JSON.parse(storageValue || '{}').title;
+    setTheme(currentTheme === 'light' ? dark : light)
   }
  
   return (
-    <CommandBar toggleTheme={toggleTheme} currentTheme={theme.title}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainContainer>
           <Router>
             <Sidebar />
-            <Header toggleTheme={toggleTheme} />
+            <CommandBar toggleTheme={toggleTheme} currentTheme={theme.title}>
+              <Header toggleTheme={toggleTheme} />
+            </CommandBar>
             <Routes>
-              <Route path="/lesson"/>
+              <Route path="/lesson/:lesson"/>
             </Routes>
           </Router>
         </MainContainer>
       </ThemeProvider>
-    </CommandBar>
   )
 }
 
