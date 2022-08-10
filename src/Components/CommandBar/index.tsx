@@ -71,7 +71,7 @@ function CommandBar({ children, toggleTheme, currentTheme }: Props) {
     <KBarProvider actions={actions} options={{ enableHistory: true }}>
       <KBarPortal>
         <StyledKBarPositioner>
-          <KBarAnimator className="kbar-blur" style={animatorStyle}>
+          <KBarAnimator style={animatorStyle}>
             <StyledKBarSearch defaultPlaceholder="O que deseja encontrar ?" />
             <RenderResults />
           </KBarAnimator>
@@ -110,7 +110,7 @@ const ResultItem = React.forwardRef(({ action, active }, ref) => {
       </div>
       {action.shortcut?.length ? (
         <div aria-hidden style={shortcutStyle}>
-          {action.shortcut.map(shortcut => (
+          {action.shortcut.map((shortcut: string) => (
             <kbd key={shortcut} style={kbdStyle}>
               {shortcut}
             </kbd>
@@ -172,7 +172,8 @@ const animatorStyle = {
   color: '#f2f2f2',
   borderRadius: '8px',
   overflow: 'hidden',
-  border: '1px solid #646cff'
+  border: '1px solid #646cff',
+  backdropFilter: 'blur(2px)'
 }
 
 const groupNameStyle = {
@@ -193,7 +194,7 @@ const kbdStyle = {
   padding: '4px 8px',
   textTransform: 'uppercase',
   color: '#8f9ba8',
-  background: 'rgba(255, 255, 255, .1)'
+  background: 'rgba(255, 255, 255, .1)',
 }
 
 const shortcutStyle = {
