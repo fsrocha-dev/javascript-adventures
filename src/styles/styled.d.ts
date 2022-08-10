@@ -15,6 +15,9 @@ declare module 'styled-components' {
       border: string,
 
       switchBg: string
+
+      skeletonBase: string,
+      skeletonHighlightColor: string
     }
   }
 }

@@ -1,4 +1,4 @@
-import { shade, lighten } from 'polished'
+import { lighten, shade } from 'polished'
 
 export default {
   title: 'light',
@@ -18,5 +18,8 @@ export default {
     linkHover: '#646cff',
 
     switchBg: '#f1f1f1',
+
+    skeletonBase: '#f3f3f3',
+    skeletonHighlightColor: '#f1f1f1'
   }
 }

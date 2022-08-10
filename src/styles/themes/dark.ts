@@ -18,5 +18,8 @@ export default {
     linkHover: '#646cff',
 
     switchBg: '#3a3a3a',
+
+    skeletonBase: '#202020',
+    skeletonHighlightColor: '#444'
   }
 }
