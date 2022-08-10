@@ -11,7 +11,7 @@ function checkTheme(theme: string) {
 }
 
 export const Container = styled.div<Props>`
-  width: 100vw;
+  width: 100%;
   height: 75px;
   color: ${props => props.theme.colors.secundary};
   display: flex;
@@ -19,7 +19,7 @@ export const Container = styled.div<Props>`
   justify-content: space-between;
   padding: 0 30px;
   /* z-index: 100; */
-  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
+  transition: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); 
   background: ${
     ({ theme, hasScrolled, currentTheme }) => hasScrolled  
     ? checkTheme(currentTheme)
