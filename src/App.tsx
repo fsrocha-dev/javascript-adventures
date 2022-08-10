@@ -1,5 +1,6 @@
+import React, { lazy, useEffect } from "react";
 import {
-  BrowserRouter as Router, Route, Routes
+  Route, Routes
 } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
@@ -11,11 +12,15 @@ import light from "./styles/themes/light";
 
 import Header from "./layouts/Header";
 import MainContainer from './layouts/Main';
+import { Content } from "./layouts/Main/styles";
 import GlobalStyle from "./styles/global";
 
-import { useEffect } from 'react';
 import CommandBar from "./Components/CommandBar";
+import SkeletonLesson from "./Components/SkeletonLesson/SkeletonLesson";
 import Sidebar from "./layouts/Sidebar";
+
+//Lazy components import
+const MarkdownLessons = lazy(() => import("./pages/MarkdownLessons"));
 
 function App() {
   const [theme, setTheme] = useLocalStorage('theme', light)
@@ -34,15 +39,21 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MainContainer>
-          <Router>
+          <>
             <Sidebar />
-            <CommandBar toggleTheme={toggleTheme} currentTheme={theme.title}>
-              <Header toggleTheme={toggleTheme} />
-            </CommandBar>
-            <Routes>
-              <Route path="/lesson/:lesson"/>
-            </Routes>
-          </Router>
+            <Content>
+              <CommandBar toggleTheme={toggleTheme} currentTheme={theme.title}>
+                <Header toggleTheme={toggleTheme} />
+              </CommandBar>
+              <Routes>
+                <Route path="/lessons/:lesson" element={
+                  <React.Suspense fallback={<SkeletonLesson />}>
+                    <MarkdownLessons />
+                  </React.Suspense>
+                }/>
+              </Routes>
+            </Content>
+          </>
         </MainContainer>
       </ThemeProvider>
   )
