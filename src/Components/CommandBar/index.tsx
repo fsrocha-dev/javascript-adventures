@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { lessons } from '../../data/lessons';
 
 import { transparentize } from 'polished';
-import styled from 'styled-components';
 
 import { TbBrandGithub, TbBrandLinkedin, TbExchange, TbFile, TbMenu2 } from 'react-icons/tb';
+import styled from 'styled-components';
 
 type Props = {
   children: JSX.Element,
@@ -82,44 +82,49 @@ function CommandBar({ children, toggleTheme, currentTheme }: Props) {
   )
 }
 
-function RenderResults() {
-  const { results } = useMatches()
+const Item = styled.div<{ active: boolean }>`
+`;
 
-  return (
-    <KBarResults
-      items={results}
-      onRender={({ item, active }) =>
-        typeof item === 'string' ? (
-          <StyledKBarGroupName>{item}</StyledKBarGroupName>
-        ) : (
-          <ResultItem action={item} active={active} />
-        )
-      }
-    />
-  )
-}
+type ItemProps = {
+	active: boolean;
+	item: string | {
+    name: string;
+    shortcut: any;
+    icon: any;
+  }
+};
 
-const ResultItem = React.forwardRef(({ action, active }, ref) => {
-  return (
-    <StyledKBarResults ref={ref} setActive={active}>
-      <div style={actionStyle}>
-        {action.icon && action.icon}
-        <div style={actionRowStyle}>
-          <span>{action.name}</span>
+
+const RenderResults = function () {
+	const { results } = useMatches();
+
+	return <KBarResults items={results} onRender={ResultItem} />;
+};
+
+const ResultItem = ({ item, active }: ItemProps) => {
+	if (typeof item === 'string') return <StyledKBarGroupName>{item}</StyledKBarGroupName>;
+	return (
+    <StyledKBarResults setActive={active}>
+        <div style={actionStyle}>
+          <>
+          {item.icon && item.icon}
+          <StyledActionRow>
+            <span>{item.name}</span>
+          </StyledActionRow>
+          </>
         </div>
-      </div>
-      {action.shortcut?.length ? (
+        {item.shortcut?.length ? (
         <div aria-hidden style={shortcutStyle}>
-          {action.shortcut.map((shortcut: string) => (
-            <kbd key={shortcut} style={kbdStyle}>
+          {item.shortcut.map((shortcut: string) => (
+            <StyledKbd key={shortcut}>
               {shortcut}
-            </kbd>
+            </StyledKbd>
           ))}
         </div>
       ) : null}
     </StyledKBarResults>
-  )
-})
+  );
+};
 
 const StyledKBarPositioner = styled(KBarPositioner)`
     position: fixed;
@@ -166,6 +171,18 @@ const StyledKBarResults = styled.div<{ setActive: boolean }>`
     color: ${(props) => props.setActive ? '#f2f2f2' : transparentize(0.2, props.theme.colors.text)};
 `
 
+const StyledKbd = styled.kbd`
+  padding: 4px 8px;
+  text-transform: uppercase;
+  color: #8f9ba8;
+  background: rgba(255, 255, 255, .1);
+`;
+
+const StyledActionRow = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const animatorStyle = {
   maxWidth: '600px',
   width: '100%',
@@ -190,13 +207,6 @@ const iconStyle = {
   top: '-2px'
 }
 
-const kbdStyle = {
-  padding: '4px 8px',
-  textTransform: 'uppercase',
-  color: '#8f9ba8',
-  background: 'rgba(255, 255, 255, .1)',
-}
-
 const shortcutStyle = {
   display: 'grid',
   gridAutoFlow: 'column',
@@ -207,11 +217,6 @@ const actionStyle = {
   display: 'flex',
   gap: '8px',
   alignItems: 'center'
-}
-
-const actionRowStyle = {
-  display: 'flex',
-  flexDirection: 'column'
 }
 
 export default CommandBar

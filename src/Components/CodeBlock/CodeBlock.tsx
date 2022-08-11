@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
-import oneDark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const CodeBlock: FC<CodeProps> = function ({
 	node,
@@ -22,7 +22,6 @@ const CodeBlock: FC<CodeProps> = function ({
 			language={language}
 			PreTag="div"
 			showLineNumbers
-			{...props}
 		>
 			{String(children).replace(/\n$/, '')}
 		</SyntaxHighlighter>
