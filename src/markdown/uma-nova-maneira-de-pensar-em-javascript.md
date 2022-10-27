@@ -1,6 +1,6 @@
 # Uma nova maneira de pensar em JavaScript
 
-[https://youtu.be/Hxyy829mz_o](https://youtu.be/Hxyy829mz_o)
+<iframe src="http://www.youtube.com/embed/Hxyy829mz_o" frameborder="0"></iframe>
 
 ### 📓 Transcrição da aula
 
@@ -14,29 +14,32 @@ Vamos seguindo tópico por tópico. Abra somente conforme você progredir no ví
 
 - **Dando a partida**
   Sem recorrer a ferramentas, leia o seguinte código e tente identificar os valores de `n1` e `n2`
-  ```jsx
-  let n1 = 6;
-  let n2 = n1;
-  n1 = 0;
-  ```
-  Relaxe: a intenção aqui não é te ensinar sobre variáveis no JavaScript. Eu sei que você já manja disso! Quero somente que perceba e reflita sobre como você _pensa no código._
-  Como segundo exercício de pensamento, quero que você releia o código acima. Contudo, desta vez com a intenção de realmente ter a certeza do resultado.
-  Preste bastante atenção! A intenção disso tudo é muito importante. E preste atenção ao que acontece na sua mente ao pensar!
-  Talvez você tenha construído um monólogo como este:
-  - `let n1 = 6;`
-    - Declarar a variável chamada `n1` e definir como 6
-  - `let n2 = n1;`
-    - Declarar a variável chamada n2 como igual a n1
-    - Então, se `n1` é igual a 6, logo `n2` também é igual a 6
-  - `n1 = 0;`
-    - Mudar o valor da variável n1 para 0
-  - Então `n1` agora é 0, e `n2` é 6
-    Enfim, talvez a sua conversa interior tenha sido diferente, ou talvez você tenha usado termos como atribuir valor tal em vez de definir, ou até algo diferente e até em um resultado diferente. Quem sabe?
-    O que temos que observar é que essa conversa interior não captura realmente o que acontece! Se você falou `definir/atribuir n2 como n1`, somos levados a pensar seguinte: o que significa definir uma variável?
-    Descobriremos que, em cada conceito fundamental da programação, tais como variáveis ou mesmo operações sobre variáveis (como é o caso de definição de valores), há conjuntos de analogias enraizadas que podemos ter associado em nossas mentes.
-    Um tipo de analogia muito comum é aquela de que variáveis são como caixas que guardam as coisas. Mesmo que você não imagine mais caixas quando vê uma variável, elas podem estar se comportando como tal em sua imaginação, e é esse tipo de coisa que consideramos como modelos mentais.
-    Infelizmente, às vezes, nossos modelos mentais estão errados, por talvez termos acompanhado algum tutorial que lemos no início da carreira, o qual pode ter sacrificado a precisão conceitual ao explicar algo em prol de torná-lo mais facilmente explicável naquele momento.
-    Pode ainda acontecer de trazermos comportamentos e pensamentos vindos de outras linguagens que aprendemos anteriormente ao JavaScript, e esse é um problema que iremos juntos corrigir nesse mini-treinamento.
+
+```jsx
+let n1 = 6;
+let n2 = n1;
+n1 = 0;
+```
+
+Relaxe: a intenção aqui não é te ensinar sobre variáveis no JavaScript. Eu sei que você já manja disso! Quero somente que perceba e reflita sobre como você _pensa no código._
+Como segundo exercício de pensamento, quero que você releia o código acima. Contudo, desta vez com a intenção de realmente ter a certeza do resultado.
+Preste bastante atenção! A intenção disso tudo é muito importante. E preste atenção ao que acontece na sua mente ao pensar!
+Talvez você tenha construído um monólogo como este:
+
+- `let n1 = 6;`
+  - Declarar a variável chamada `n1` e definir como 6
+- `let n2 = n1;`
+  - Declarar a variável chamada n2 como igual a n1
+  - Então, se `n1` é igual a 6, logo `n2` também é igual a 6
+- `n1 = 0;`
+  - Mudar o valor da variável n1 para 0
+- Então `n1` agora é 0, e `n2` é 6
+  Enfim, talvez a sua conversa interior tenha sido diferente, ou talvez você tenha usado termos como atribuir valor tal em vez de definir, ou até algo diferente e até em um resultado diferente. Quem sabe?
+  O que temos que observar é que essa conversa interior não captura realmente o que acontece! Se você falou `definir/atribuir n2 como n1`, somos levados a pensar seguinte: o que significa definir uma variável?
+  Descobriremos que, em cada conceito fundamental da programação, tais como variáveis ou mesmo operações sobre variáveis (como é o caso de definição de valores), há conjuntos de analogias enraizadas que podemos ter associado em nossas mentes.
+  Um tipo de analogia muito comum é aquela de que variáveis são como caixas que guardam as coisas. Mesmo que você não imagine mais caixas quando vê uma variável, elas podem estar se comportando como tal em sua imaginação, e é esse tipo de coisa que consideramos como modelos mentais.
+  Infelizmente, às vezes, nossos modelos mentais estão errados, por talvez termos acompanhado algum tutorial que lemos no início da carreira, o qual pode ter sacrificado a precisão conceitual ao explicar algo em prol de torná-lo mais facilmente explicável naquele momento.
+  Pode ainda acontecer de trazermos comportamentos e pensamentos vindos de outras linguagens que aprendemos anteriormente ao JavaScript, e esse é um problema que iremos juntos corrigir nesse mini-treinamento.
 
 ---
 
