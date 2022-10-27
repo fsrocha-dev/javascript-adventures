@@ -16,7 +16,7 @@ Vamos seguindo tópico por tópico. Abra somente conforme você progredir no ví
 
 Sem recorrer a ferramentas, leia o seguinte código e tente identificar os valores de `n1` e `n2`
 
-```jsx
+```javascript
 let n1 = 6;
 let n2 = n1;
 n1 = 0;
@@ -51,7 +51,7 @@ Contudo, usar esse sistema "lento” é desgastante mentalmente, e é por isso q
 Vamos ao seguinte exercício:
 Imagine que você está atolado em trabalho e quer identificar rapidamente o que essa função faz. Dê uma olhada nela abaixo:
 
-```jsx
+```javascript
 function duplicateSpreadsheet(original) {
   if (original.hasPendingChanges) {
     throw new Error('Salve o arquivo antes de duplicar.');
