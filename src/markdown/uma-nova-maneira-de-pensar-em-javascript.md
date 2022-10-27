@@ -1,6 +1,6 @@
 # Uma nova maneira de pensar em JavaScript
 
-<iframe src="http://www.youtube.com/embed/Hxyy829mz_o" frameborder="0"></iframe>
+<iframe src="https://www.youtube.com/embed/Hxyy829mz_o" frameborder="0"></iframe>
 
 ## 📓 Transcrição da aula
 
