@@ -2,7 +2,7 @@
 
 <iframe src="http://www.youtube.com/embed/Hxyy829mz_o" frameborder="0"></iframe>
 
-### 📓 Transcrição da aula
+## 📓 Transcrição da aula
 
 Você já parou para pensar no porquê de você pensar da forma como pensa quando está codificando?
 
@@ -12,8 +12,9 @@ Perguntas como essas são meio pretensiosas, eu reconheço! Contudo, temos que c
 
 Vamos seguindo tópico por tópico. Abra somente conforme você progredir no vídeo!
 
-- **Dando a partida**
-  Sem recorrer a ferramentas, leia o seguinte código e tente identificar os valores de `n1` e `n2`
+### Dando a partida
+
+Sem recorrer a ferramentas, leia o seguinte código e tente identificar os valores de `n1` e `n2`
 
 ```jsx
 let n1 = 6;
@@ -41,48 +42,47 @@ Talvez você tenha construído um monólogo como este:
   Infelizmente, às vezes, nossos modelos mentais estão errados, por talvez termos acompanhado algum tutorial que lemos no início da carreira, o qual pode ter sacrificado a precisão conceitual ao explicar algo em prol de torná-lo mais facilmente explicável naquele momento.
   Pode ainda acontecer de trazermos comportamentos e pensamentos vindos de outras linguagens que aprendemos anteriormente ao JavaScript, e esse é um problema que iremos juntos corrigir nesse mini-treinamento.
 
----
+### Aquecendo os motores
 
-- **Aquecendo os motores**
-  Existe um livro chamado ["Rápido e devagar: Duas formas de pensar”](https://amzn.to/3JeCZEE) que explora dois sistemas diferentes que nós usamos quando pensamos.
-  Geralmente e quase sempre usamos o sistema "rápido”, que é muito bom em padrões e reações institivas, que, alías, são necessárias para nossa sobreviência. Um bom exemplo disso é a nossa capacidade de andar sem cair. Contudo, é preciso reconhecer: ele não é muito bom em planejamento.
-  O nosso sistema "lento”, por outro lado é responsável pelo raciocínio estilo passo a passo, mais complexo. Ele é o que nos permite planejar coisas futuras, argumentar e resolver, por exemplo, problemas matemáticos.
-  Contudo, usar esse sistema "lento” é desgastante mentalmente, e é por isso que tendemos a sempre optar pelo sistema "rápido”, inclusive quando lidamos com tarefas intelectivas como programar.
-  Vamos ao seguinte exercício:
-  Imagine que você está atolado em trabalho e quer identificar rapidamente o que essa função faz. Dê uma olhada nela abaixo:
-  ```jsx
-  function duplicateSpreadsheet(original) {
-    if (original.hasPendingChanges) {
-      throw new Error('Salve o arquivo antes de duplicar.');
-    }
-    let copy = {
-      created: Date.now(),
-      author: original.author,
-      cells: original.cells,
-      metadata: original.metadata
-    };
-    copy.metadata.title = 'Copia de' + original.metadata.title;
-    return copy;
+Existe um livro chamado ["Rápido e devagar: Duas formas de pensar”](https://amzn.to/3JeCZEE) que explora dois sistemas diferentes que nós usamos quando pensamos.
+Geralmente e quase sempre usamos o sistema "rápido”, que é muito bom em padrões e reações institivas, que, alías, são necessárias para nossa sobreviência. Um bom exemplo disso é a nossa capacidade de andar sem cair. Contudo, é preciso reconhecer: ele não é muito bom em planejamento.
+O nosso sistema "lento”, por outro lado é responsável pelo raciocínio estilo passo a passo, mais complexo. Ele é o que nos permite planejar coisas futuras, argumentar e resolver, por exemplo, problemas matemáticos.
+Contudo, usar esse sistema "lento” é desgastante mentalmente, e é por isso que tendemos a sempre optar pelo sistema "rápido”, inclusive quando lidamos com tarefas intelectivas como programar.
+Vamos ao seguinte exercício:
+Imagine que você está atolado em trabalho e quer identificar rapidamente o que essa função faz. Dê uma olhada nela abaixo:
+
+```jsx
+function duplicateSpreadsheet(original) {
+  if (original.hasPendingChanges) {
+    throw new Error('Salve o arquivo antes de duplicar.');
   }
-  ```
-  Você provavelmente percebeu o seguinte:
-  - Esta função duplica uma planilha.
-  - Ela lança um erro se a planilha original não estiver salva.
-  - Ela acrescenta "Cópia de” ao título da nova planilha.
-  - Porém…
-    O que você pode não ter notado (e parabéns se notou), é que essa função altera de maneira acidental o título da planilha original. Acredite, esse tipo de bug acontece todos sempre durante o dia a dia da pessoa que programa.
-    Quando usamos o sistema "rápido”, tentamos adivinhar o que o código faz com base em sua estrutura geral, convenções, nomenclaturas e comentários. Contudo, ao usar o sistema "lento”, refazemos mentalmente o passo a passo do que o código faz, o que é mais cansativo e demorado.
-    É por isso que ter um modelo mental preciso é tão importante. Simular um computador em sua cabeça é difícil e, quando você precisa usar o sistema de pensamento "lento”, seu modelo mental é tudo em que você pode confiar.
-    Se, porém, o seu modelo mental estiver errado, você entenderá fundamentalmente mal o que esperar do seu código e todo o seu esforço terá sido em vão.
-    Não se preocupe se você não conseguir encontrar o bug - isso significa apenas que você aproveitará ao máximo este curso!
+  let copy = {
+    created: Date.now(),
+    author: original.author,
+    cells: original.cells,
+    metadata: original.metadata
+  };
+  copy.metadata.title = 'Copia de' + original.metadata.title;
+  return copy;
+}
+```
 
----
+Você provavelmente percebeu o seguinte:
 
-- **Trocando de marcha**
-  Espero que você tenha percebido o quão importante é o modo como pensamos quando vamos codar! Na próxima aula, começaremos a construir nossa nova maneira de pensar. Começaremos com alguns conceitos dos mais fundamentais do JavaScript, que são _valores_ e _expressões._
+- Esta função duplica uma planilha.
+- Ela lança um erro se a planilha original não estiver salva.
+- Ela acrescenta "Cópia de” ao título da nova planilha.
+- Porém…
+  O que você pode não ter notado (e parabéns se notou), é que essa função altera de maneira acidental o título da planilha original. Acredite, esse tipo de bug acontece todos sempre durante o dia a dia da pessoa que programa.
+  Quando usamos o sistema "rápido”, tentamos adivinhar o que o código faz com base em sua estrutura geral, convenções, nomenclaturas e comentários. Contudo, ao usar o sistema "lento”, refazemos mentalmente o passo a passo do que o código faz, o que é mais cansativo e demorado.
+  É por isso que ter um modelo mental preciso é tão importante. Simular um computador em sua cabeça é difícil e, quando você precisa usar o sistema de pensamento "lento”, seu modelo mental é tudo em que você pode confiar.
+  Se, porém, o seu modelo mental estiver errado, você entenderá fundamentalmente mal o que esperar do seu código e todo o seu esforço terá sido em vão.
+  Não se preocupe se você não conseguir encontrar o bug - isso significa apenas que você aproveitará ao máximo este curso!
 
-**Estaremos juntos nesta jornada, Aventureiros e Aventureiras! 🧗**
+### Trocando de marcha
 
-Créditos: [Dan Abramov](https://overreacted.io/)
+Espero que você tenha percebido o quão importante é o modo como pensamos quando vamos codar! Na próxima aula, começaremos a construir nossa nova maneira de pensar. Começaremos com alguns conceitos dos mais fundamentais do JavaScript, que são _valores_ e _expressões._
 
-Adaptação: [Frank Rocha](https://www.frankrocha.dev/)
+Estaremos juntos nesta jornada, Aventureiros e Aventureiras! 🧗
+
+Créditos: [Dan Abramov](https://overreacted.io/) | Adaptação: [Frank Rocha](https://www.frankrocha.dev/)
